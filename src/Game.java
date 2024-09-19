@@ -26,7 +26,10 @@ public class Game {
             if(nextPosition == bordSize){
                 return currentPlayer.getName();
             }
-            else if(nextPosition> bordSize) continue;
+            else if(nextPosition> bordSize) {
+                q.add(currentPlayer);
+                continue;
+            }
             else if(bridges.containsKey(nextPosition)){
                 int startPoint = nextPosition;
                 int endPoint = bridges.get(nextPosition);
@@ -53,7 +56,7 @@ public class Game {
         int endPoint = bridges.get(currentPosition);
 
         while(!bridges.containsKey(currentPosition)){
-            currentPlayer.setCurrentPosition(currentPosition + endPoint);
+            currentPlayer.setCurrentPosition(endPoint);
             if(bridges.containsKey(currentPosition+endPoint)){
                 currentPosition = currentPosition+endPoint;
             }
@@ -65,7 +68,7 @@ public class Game {
         int endPoint = bridges.get(currentPosition);
 
         while(!bridges.containsKey(currentPosition)){
-            currentPlayer.setCurrentPosition(currentPosition + endPoint);
+            currentPlayer.setCurrentPosition(endPoint);
             if(bridges.containsKey(currentPosition+endPoint)){
                 currentPosition = currentPosition+endPoint;
             }
